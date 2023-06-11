@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+<form action="/humans" method="post">
+  <label for="name">Name</label>
+  <input type="text" name="name" id="name" placeholder="...">
+</form>
   <table id="data" class="table table-striped">
     <thead>
       <tr>
