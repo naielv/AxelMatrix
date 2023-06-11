@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+    naielv:
+        ports:
+            - '8877:8877'
+        volumes:
+            - './data:/app/data'
+        restart: always
+        image: 'ghcr.io/naielv/axelmatrix:main'
