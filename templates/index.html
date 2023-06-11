@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <table id="data" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Iter</th>
+        <th>Name</th>
+        <th>Event</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for iter in iters %}
+        {% for event in iters[iter] %}
+          <tr>
+            <td>{{ iter }}</td>
+            <td>{{ event["name"] }}</td>
+            <td>{{ event["event"] }}</td>
+            <td>{{ event["details"] }}</td>
+          </tr>
+        {% endfor %}
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+{% block scripts %}
+<script>
+  $(document).ready(function () {
+    $("#data").DataTable({
+    order: [[0, 'desc']],
+});
+  });
+</script>
+{% endblock %}
