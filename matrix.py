@@ -8,26 +8,34 @@ from utils import read, configurator
 SIZES = ["Big", "Small", "Medium"]
 FOODS = ["Burger", "Sadwich", "Lasagna"]
 
+COLORS = {
+    "red": "#f44336", 
+    "green": "#4caf50", 
+    "blue": "#008cba",
+    "gray": "#555555",
+    "black": "#000000"
+    }
+
 
 def f_walk():
     n = randrange(1, 25)
-    return "walked", f"{str(n)} metres"
+    return "walked", f"{str(n)} metres", "green"
 
 
 def f_eat():
     size = choice(SIZES)
     food = choice(FOODS)
-    return "ate", f"a {str(size)} {str(food)}"
+    return "ate", f"a {str(size)} {str(food)}", "blue"
 
 
 def f_sleep():
     n = randrange(1, 10)
-    return "slept", f"{str(n)} hours"
+    return "slept", f"{str(n)} hours", "gray"
 
 
 def f_nothing():
     n = randrange(1, 25)
-    return "nothing", f"{str(n)} minutes"
+    return "nothing", f"{str(n)} minutes", "black"
 
 
 options = [
@@ -42,13 +50,13 @@ class Human:
     def __init__(self, name: str = None):
         self.name = genname() if name == None else name
 
-    def log(self, event: str, details: str):
+    def log(self, event: str, details: str, color: str):
         """Log
 
         Keyword arguments:
         event: A string
         Return: Dict containing name & event"""
-        result = {"name": self.name, "event": event, "details": details}
+        result = {"name": self.name, "event": event, "details": details, "color": COLORS[color]}
         print(f'"{result["name"]}"    \t{result["event"]}\t({result["details"]})')
         return result
 
@@ -58,8 +66,8 @@ class Human:
         Keyword arguments:
         action: A function that returns a event
         Return: Dict containing name & event"""
-        ev, de = action()
-        return self.log(ev, de)
+        ev, de, co = action()
+        return self.log(ev, de, co)
 
     def dump(self):
         """Dump
@@ -81,7 +89,7 @@ class Simulation:
 
         Return: List of dicts with name & event as args"""
         history = []
-        for human in sample(self.humans,len(self.humans)):
+        for human in self.humans:
             opt = choice(options)
             history.append(human.do(opt))
         with open(file, "a") as f:
