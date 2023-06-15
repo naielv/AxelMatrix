@@ -1,0 +1,2 @@
+NGINX_SERVER_NAME=matrix.soynaiel.com
+NGINX_CLOUDFLARE_ACL=True
