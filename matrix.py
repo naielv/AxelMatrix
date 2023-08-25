@@ -6,7 +6,7 @@ import os
 from utils import read, configurator
 
 SIZES = ["Big", "Small", "Medium"]
-FOODS = ["Burger", "Sadwich", "Lasagna"]
+FOODS = ["Burger", "Sadwich", "Lasagna", "Pizza", "Spaghetti", "Donut", "Burrito"]
 
 COLORS = {
     "red": "#f44336", 
